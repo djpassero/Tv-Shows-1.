@@ -1,0 +1,63 @@
+# set working directory
+setwd("H:/sta215")
+
+# NOTE: Run base.R if these commands return an error!
+#load packages
+library(readr)
+library(dplyr)
+library(haven)
+library(ggplot2)
+
+Raw_Data <- read.csv("Raw_Data")
+
+#Descriptive Statistics
+mean(Raw_Data$time)
+mean(Raw_Data$month)
+mean(Raw_Data$year)
+mean(Raw_Data$main_characters)
+mean(Raw_Data$conflict)
+
+sd(Raw_Data$time)
+sd(Raw_Data$month)
+sd(Raw_Data$year)
+sd(Raw_Data$main_characters)
+sd(Raw_Data$conflict)
+
+table(Raw_Data$time, Raw_Data$month)
+table(Raw_Data$year, Raw_Data$main_characters)
+table(Raw_Data$conflict)
+
+describe(Raw_Data$time)
+describe(Raw_Data$month)
+describe(Raw_Data$year)
+describe(Raw_Data$main_characters)
+describe(Raw_Data$conflcit)
+
+summary(Raw_Data$time)
+summary(Raw_Data$month)
+summary(Raw_Data$year)
+summary(Raw_Data$main_characters)
+summary(Raw_Data$characters)
+
+
+#Contigency table
+table(data$month , data$conflict)
+
+ggplot(Raw_Data, aes(x = time, y = conflict)) +
+  geom_point(color = "blue", size = 3) 
+  ggtitle("Scatter Plot for Conflict and Time") 
+  xlab("time") 
+  ylab("conflict") 
+
+ggplot(Raw_Data, aes(x = month, y = time)) +
+  geom_boxplot() +
+  labs(title = "Box Plot of month and time",
+       x = "month",
+       y = "time") +
+  theme_minimal()
+
+linear_relationship <- lm(Raw_Data$month ~ time, Raw_Data = Raw_Data)
+summary(linear_relationship)
+
+plot(Raw_Data$rating, residuals(linear_relationship))
+abline(h = 0, color = "red")
